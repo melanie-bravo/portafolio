@@ -154,34 +154,65 @@ document.querySelectorAll('.sem-card[data-img-base]').forEach(card => {
 
 // ── Lightbox touch/swipe support ──
 let touchStartX = 0;
+let touchStartY = 0;
 let touchEndX = 0;
 
+// Debug: log cuando se registra touch
 lightbox.addEventListener('touchstart', e => {
   touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+  console.log('[Lightbox] touchstart:', touchStartX, touchStartY);
 }, { passive: true });
+
+lightbox.addEventListener('touchmove', e => {
+  // Prevenir scroll mientras se hace swipe en el lightbox
+  if (lightbox.classList.contains('open')) {
+    e.preventDefault();
+  }
+}, { passive: false });
 
 lightbox.addEventListener('touchend', e => {
   touchEndX = e.changedTouches[0].screenX;
+  console.log('[Lightbox] touchend:', touchEndX, 'diff:', touchStartX - touchEndX);
   handleSwipe();
 }, { passive: true });
 
 function handleSwipe() {
-  if (!lightbox.classList.contains('open')) return;
-  if (lbImages.length <= 1) return;
+  if (!lightbox.classList.contains('open')) {
+    console.log('[Lightbox] not open, ignoring swipe');
+    return;
+  }
+  if (lbImages.length <= 1) {
+    console.log('[Lightbox] only 1 image, no swipe needed');
+    return;
+  }
 
-  const threshold = 50; // minimum swipe distance
+  const threshold = 60; // mínimo 60px para considerar swipe
   const diff = touchStartX - touchEndX;
 
+  console.log('[Lightbox] handleSwipe diff:', diff, 'threshold:', threshold);
+
   if (diff > threshold && lbIndex < lbImages.length - 1) {
-    // Swipe left -> next
+    console.log('[Lightbox] swipe left detected -> next');
     lbIndex++;
     renderLightbox();
   } else if (diff < -threshold && lbIndex > 0) {
-    // Swipe right -> previous
+    console.log('[Lightbox] swipe right detected -> previous');
     lbIndex--;
     renderLightbox();
+  } else {
+    console.log('[Lightbox] swipe too small or at boundary');
   }
 }
+
+// Debug: verificar que los elementos existen
+console.log('[Lightbox] Elements found:', {
+  lightbox: !!lightbox,
+  lbImg: !!lbImg,
+  lbPrev: !!lbPrev,
+  lbNext: !!lbNext,
+  lbCloseBtn: !!lbCloseBtn
+});
 
 // Pikmin easter egg
 const pikminTrigger = document.getElementById('pikmin-trigger');
