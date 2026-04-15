@@ -152,6 +152,37 @@ document.querySelectorAll('.sem-card[data-img-base]').forEach(card => {
   });
 });
 
+// ── Lightbox touch/swipe support ──
+let touchStartX = 0;
+let touchEndX = 0;
+
+lightbox.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+lightbox.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+  if (!lightbox.classList.contains('open')) return;
+  if (lbImages.length <= 1) return;
+
+  const threshold = 50; // minimum swipe distance
+  const diff = touchStartX - touchEndX;
+
+  if (diff > threshold && lbIndex < lbImages.length - 1) {
+    // Swipe left -> next
+    lbIndex++;
+    renderLightbox();
+  } else if (diff < -threshold && lbIndex > 0) {
+    // Swipe right -> previous
+    lbIndex--;
+    renderLightbox();
+  }
+}
+
 // Pikmin easter egg
 const pikminTrigger = document.getElementById('pikmin-trigger');
 const pikminFloat = document.getElementById('pikmin-float');
