@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f3ee">
   <title>Melanie Bravo · Modeladora MEP BIM</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -224,6 +225,60 @@
   </div>
 </section>
 
+<!-- PRIMER SEMESTRE — Universidad de Chile -->
+<section id="sem1">
+  <div class="section-header reveal">
+    <div>
+      <div class="sem-eyebrow">Universidad de Chile</div>
+      <div class="section-title">Primer semestre</div>
+    </div>
+    <span class="section-count"></span>
+  </div>
+
+  <div class="sem-grid">
+
+    <!-- Proyecto sem1-1
+         Soltar imágenes en: img/sem1/proyecto-1/1.jpg, 2.jpg, 3.jpg ... -->
+    <a class="sem-card reveal" href="#" data-img-base="img/sem1/proyecto-1">
+      <div class="sem-img">
+        <img src="img/sem1/proyecto-1/1.jpg" alt="Proyecto 1 — primer semestre" loading="lazy" width="400" height="300" onerror="this.style.display='none'">
+        <span class="sem-img-count"></span>
+      </div>
+      <div class="sem-body">
+        <div class="sem-tag">Primer semestre</div>
+        <div class="sem-name">Nombre del proyecto</div>
+      </div>
+    </a>
+
+    <!-- Proyecto sem1-2
+         Soltar imagen en: img/sem1/proyecto-2/1.jpg -->
+    <a class="sem-card reveal" href="#" style="transition-delay:0.07s" data-img-base="img/sem1/proyecto-2">
+      <div class="sem-img">
+        <img src="img/sem1/proyecto-2/1.jpg" alt="Proyecto 2 — primer semestre" loading="lazy" width="400" height="300" onerror="this.style.display='none'">
+        <span class="sem-img-count"></span>
+      </div>
+      <div class="sem-body">
+        <div class="sem-tag">Primer semestre</div>
+        <div class="sem-name">Nombre del proyecto</div>
+      </div>
+    </a>
+
+    <!-- Proyecto sem1-3
+         Soltar imágenes en: img/sem1/proyecto-3/1.jpg, 2.jpg, 3.jpg ... -->
+    <a class="sem-card reveal" href="#" style="transition-delay:0.14s" data-img-base="img/sem1/proyecto-3">
+      <div class="sem-img">
+        <img src="img/sem1/proyecto-3/1.jpg" alt="Proyecto 3 — primer semestre" loading="lazy" width="400" height="300" onerror="this.style.display='none'">
+        <span class="sem-img-count"></span>
+      </div>
+      <div class="sem-body">
+        <div class="sem-tag">Primer semestre</div>
+        <div class="sem-name">Nombre del proyecto</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
 <!-- EXPERIENCIA -->
 <section id="experiencia">
   <div class="exp-inner">
@@ -391,6 +446,20 @@
     </div>
   </div>
 </footer>
+
+<!-- Lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Visor de imágenes" aria-hidden="true">
+  <div class="lb-backdrop"></div>
+  <div class="lb-container">
+    <button class="lb-close" aria-label="Cerrar">✕</button>
+    <div class="lb-row">
+      <button class="lb-prev" aria-label="Imagen anterior">‹</button>
+      <img class="lb-img" src="" alt="Imagen del proyecto">
+      <button class="lb-next" aria-label="Imagen siguiente">›</button>
+    </div>
+    <div class="lb-dots"></div>
+  </div>
+</div>
 
 <script src="main.js"></script>
 </body>
